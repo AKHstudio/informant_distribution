@@ -1,0 +1,219 @@
+## バニラ変更
+commands.message.display.incoming=§r§f%1$s から個別チャットが届きました : %2$s
+commands.message.display.outgoing=§r§f%1$s に個別チャットを送りました : %2$s
+item.spyglass.name=§l§5望遠鏡
+
+## ファンクションファイル
+## function.ファイル名.内容
+
+## タイトル(script)
+title.timeover.oneminute=§eゲーム終了まであと1分§r
+title.timeover.countdown=§eゲーム終了まで§r
+title.timeover.countdown.subtitle=§eあと%1秒§r
+
+## カニバリズムマイマイ
+entity.informant:snail.name=§4カニバリズムマイマイ§r§f
+
+## joinメッセージ
+help.worldjoin.messege=<密告中 | help> !helpでヘルプを表示
+info.worldjoin.messege0=<密告中 | info> このワールドは最新版ですか？クラフターズコロニーでご確認下さい！(https://minecraft-mcworld.com/47663/)
+info.worldjoin.messege1=現在ver%1です
+warning.worldjoin.messege=<密告中 | §gwarning§r> §4プレイ途中退出の可能性があります!注意してください!§r
+
+## メール送信時メッセージ
+mail.start.message=<密告中 | game> メールだ...
+
+
+## スペクテイターチェンジメッセージ
+info.spectator.change.message=<密告中 | info>§4追放！§r観戦者に切り替えます
+help.spectator.change.message=<密告中 | help> §e!tp§rで生存者一覧を見ることができ選択でtp出来ます！
+
+## コマンドアドミン
+commands.admin.spectatoronly.message=<密告中 | §gwarning§r> 観戦者専用のコマンドです
+commands.admin.closechat.message=<密告中 | command> チャットを閉じて下さい
+
+## Startコマンドメッセージ
+info.start.command.getitem.message=<密告中 | info> %1がスタートアイテムを取得しました！
+warning.start.command.owneronly.message=<密告中 | §gwarning§r> ワールドのオーナーである必要があります
+warning.start.command.nowgame.message=<密告中 | §gwarning§r> ゲーム中は受け取れません
+
+## Joinコマンドメッセージ
+help.join.command.message=<密告中 | help> §e!tp§rで生存者一覧を見ることができ選択でtp出来ます！
+warning.join.command.ungameing.message=<密告中 | §gwarning§r> ゲーム中のみ有効です
+warning.join.command.issurvivor.message=<密告中 | §gwarning§r> このコマンドは生存中には使用できません
+
+## Helpコマンドメッセージ
+help.help.command.message0=<密告中 | help> 確認出来るヘルプ一覧 
+help.help.command.message1=§e!command§f:独自追加コマンド一覧を表示 
+help.help.command.message2=§e!credit§f:制作者の情報表示 
+help.help.command.message3=§e!link§f:各種リンク
+
+## Commandコマンドメッセージ
+help.command.command.message0=<密告中 | help>
+help.command.command.message1=-オーナーのみ利用可能- §e!worldload§f:ワールドロード設定を変更できます
+help.command.command.message2=§e!start§f:ゲームスタートアイテムの取得
+help.command.command.message3=-いつでも利用可能- §e!help§f:ヘルプを表示
+help.command.command.message4=§e!credit§f:クレジットを表示
+help.command.command.message5=-ゲーム中(生存者)で利用可能- §e!stop§f:ゲームを一時停止する投票を開始できます
+help.command.command.message6=-ゲーム中(観戦者)で利用可能- §e!tp§f:生存者の元にテレポート出来ます §e!hub§f:hubの戻ります
+help.command.command.message7=-ゲーム中(非参加者)で利用可能- §e!join§f:観戦者として参加できます
+
+## Creditコマンドメッセージ
+help.credit.command.message0=<密告中 | help> -制作-:AKHStudio(AKIsan,Takodayo,Harupon)
+help.credit.command.message1=-マップ-:inuinu3様
+
+## Linkコマンドメッセージ
+help.link.command.message0=<密告中 | help> -AKHStudio-:https://minecraft-mcworld.com/47663/
+help.link.command.message1=inuinu3様:https://minecraft-mcworld.com/31597/
+
+## Worldloadコマンドメッセージ
+command.worldload.command.owneronly.message=<密告中 | §gwarning§r> オーナーのみ利用可能です
+command.worldload.command.help.message=<密告中 | command> !worldload <on||off>   !worldload check
+setting.worldload.command.changetrue.message0=<密告中 | setting> ワールドロードをonにしました
+setting.worldload.command.changetrue.message1=§4この設定ではワールドに負荷がかかり強制終了する可能性があります!§f
+setting.worldload.command.changetrue.message2=負荷の大きさはプレイ端末のスペックに依存します
+setting.worldload.command.changefalse.message=<密告中 | setting> ワールドロードをoffにしました
+setting.worldload.command.already.message=<密告中 | setting> ワールドロードはすでに%1です
+setting.worldload.command.check.message=<密告中 | setting> ワールドロードは%1です
+warning.worldload.command.invalid.message=<密告中 | §gwarning§r> on off checkのみ有効です
+
+## Tpコマンドメッセージ
+
+## Hubコマンドメッセージ
+command.hub.command.backtohub.message=<密告中 | command> HUBに戻りました
+
+## Stopコマンドメッセージ
+command.stop.command.coolingdown.message=<密告中 | command> ストップリクエストはクールダウン中です！次のリクエスト可能まで%1秒
+command.stop.command.nowstoping.message=<密告中 | §gwarning§r> 現在ストップ中です
+command.stop.command.unspectator.message=<密告中 | §gwarning§r> 観戦者は使用できないコマンドです
+
+## ui関係
+
+ui.back.menu=メインメニューに戻る
+ui.whole=全体
+ui.canceled.message=<密告中 | info> スマホの使用をキャンセルしました
+
+## Menuフォーム
+ui.menu.title=スマホメニュー
+ui.menu.body=どの機能を使う？
+ui.menu.button.informant=密告
+ui.menu.button.chat=チャット
+ui.menu.button.mail=メール
+
+## informantフォーム
+ui.informant.title=密告フォーム
+ui.informant.dropdown=誰を密告する？
+ui.informant.textField.label=入力フォーム
+ui.informant.textField.placeholdertext=番号を入力§4※1桁は0をつけて下さい
+
+## chatフォーム
+ui.chat.title=チャットフォーム
+ui.chat.dropdown=誰にチャット？
+ui.chat.textField.label=入力フォーム
+ui.chat.textField.placeholdertext=メッセージを入力
+
+## mailcheckフォーム
+ui.mail.title=メール確認
+ui.mail.body.warning=取得に失敗しました
+ui.mail.button1=閉じる
+ui.mail.button2=メニューへ
+
+## tpフォーム
+ui.tp.title=テレポートフォーム
+ui.tp.body=生存者リスト
+ui.tp.canceled=<密告中 | info> テレポートをキャンセルしました
+
+## Stopoptionフォーム
+ui.stopop.title=ストップリクエスト オプション
+ui.stopop.slider=ストップ時間設定(分)
+ui.stopop.textfield.label=理由
+ui.stopop.textfield.placeholdertext=理由を入力
+ui.stopop.success=<密告中 | info> リクエストの送信が完了しました
+ui.stopop.canceled=<密告中 | info> スットプリクエストをキャンセルしました
+
+## StopVote
+stop.vote.start=<密告中 | vote> %1がストップ投票を開始しました  時間:%2分/理由:%3
+stop.vote.start.target=<密告中 | vote> 投票者対象：ゲームに参加していて観戦者ではない全員
+stop.vote.start.method=<密告中 | vote> 投票方法:賛成=1/反対=0をチャットに入力してください
+stop.vote.start.time=<密告中 | vote> 投票時間:20秒
+stop.vote.close=<密告中 | vote> 投票は締め切りました
+stop.vote.voted.oppose=<密告中 | vote> 反対に投票しました
+stop.vote.voted.agreement=<密告中 | vote> 賛成に投票しました
+stop.vote.error=<密告中 | §4error§r> 投票に失敗しました  %1
+
+## StopResult
+stop.result=<密告中 | vote> 投票の結果:賛成 %1/反対 %2
+## 賛成多数
+stop.result.true=<密告中 | vote> スットプリクエストが許諾されました
+stop.result.run.stop=<密告中 | game> これより%1分ゲームを停止します
+## 反対多数
+stop.result.false=<密告中 | vote> ストップリクエストは却下されました
+stop.result.restart=<密告中 | game> ゲームを再開します
+
+## GiveUpフォーム
+ui.giveup.title=降参
+ui.giveup.body=本当に降参しますか？
+ui.giveup.button1=はい
+ui.giveup.button2=いいえ
+ui.giveup.canceled=<密告中 | info> キャンセルしました
+
+
+## gameoverui
+ui.gameover.gameend.message=<密告中 | §4error§r> ゲームが終了しています
+ui.gameover.backtohub.message=<密告中 | game> HUBに戻りました
+
+ui.gameover.ui.title=ゲームオーバー
+ui.gameover.ui.body.informant.true=密告により追放されてしまいました!
+ui.gameover.ui.body.informant.false=密告により追放されてしまいました!
+ui.gameover.ui.body.mission=ミッション失敗により追放されてしまいました！
+ui.gameover.ui.button1=HUBへ
+ui.gameover.ui.button2=観戦モード
+
+## runchat
+chat.success=<密告中 | game> チャットの送信が完了しました:内容[%1]/送信相手[%2]
+chat.success.whole=<密告中 | game> チャットの送信が完了しました:内容[%1]
+
+## checkInput
+check.entry.not.verified=<密告中 | info> §4入力が確認されませんでした
+check.number.only=<密告中 | §gwarning§r> §4数字以外は無効です
+check.number.two.digits=<密告中 | §gwarning§r> §4番号は二桁です
+
+
+
+## ミッション関係
+## ミッションクリア
+mission.clear.message=<密告中 | mission> §gミッションクリア！！§r
+## 成功ver
+mission.success.message=<密告中 | mission> §gミッション成功！！！§r
+## ミッション終了
+mission.end.message=<密告中 | mission> ミッション終了
+
+## Npcミッション
+mission.npcrequests.start.message=<密告中 | mission> ミッション発動！残り%1分までにマップ内に3人存在するNPCからクエストを受けろ！
+mission.npcrequests.nohasitem.akisan=<密告中 | AKIsan> エメラルドが見当たらないよ！！
+mission.npcrequests.nohasitem.takodayo=<密告中 | takodayo> ダイアモンドがないよ！！
+mission.npcrequests.nohasitem.harupon=<密告中 | Harupon> ラピスラズリないよ
+
+mission.npcrequests.warning.duplication=<密告中 | §gwarning§r> §4一度に受けられるリクエストは1つのみです
+
+## スニークミッション
+mission.nosneak.start.message=<密告中 | mission> ミッション発動！残り%1分になるまでスニークできない！！スニークした場合自分からアラームが鳴る！更に連続で5秒スニークした場合ゲームオーバとなる！
+mission.nosneak.countdown.messege=<密告中 | mission> ゲームオーバーまで%1秒 
+
+## ビーコンミッション
+mission.fourbeacons.start.message=<密告中 | mission> ミッション発動！残り%1分までにマップ内に存在する4つのビーコンのうちどれか2つのダイヤモンドブロックの上に乗れ！乗れなければゲームオーバーとなる
+mission.fourbeacons.authenticationcomplete=<密告中 | mission> 認証完了！ %1/2
+mission.fourbeacons.all.authenticationcomplete=<密告中 | mission> 認証オールクリア！
+
+## 悪天候ミッション
+mission.fiveminutesfog.pre.message=<密告中 | mission> 天候が悪化している...
+mission.fiveminutesfog.start.message=<密告中 | mission> イベント発動！悪天候により残り%1分まで霧が発生！
+mission.fiveminutesfog.end.message=<密告中 | mission> 天候が戻った...
+
+## ボタンミッション
+mission.fivebuttons.start.message=<密告中 | mission> ミッション発動！残り%1分までにマップ内に存在する5つの桜のボタンのうちどれか1つを押せ！押せなければゲームオーバーとなる！ボタンを押せるのは先着5人！
+mission.fivebuttons.alreadypressed.message=<密告中 | §gwarning§r> すでに押しています
+
+## スネールミッション
+mission.chasedbysnail.start.message=<密告中 | mission> ミッション発動！%1分までエリアに15匹のカタツムリが出現！プレイヤーに襲いかかる！阻止するにはカタツムリのご飯をあげなければならない！なおご飯は1匹に付き1人しかあげられない
+mission.chasedbysnail.ate.message=<密告中 | mission> %1はカタツムリに食べられてしまった！
