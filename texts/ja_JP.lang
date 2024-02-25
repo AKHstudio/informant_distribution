@@ -3,8 +3,33 @@ commands.message.display.incoming=§r§f%1$s から個別チャットが届き�
 commands.message.display.outgoing=§r§f%1$s に個別チャットを送りました : %2$s
 item.spyglass.name=§l§5望遠鏡
 
+## hubでのアクションバー表示
+actionbar.solo=現在の§6ゲームモード§r:個人戦
+actionbar.team=現在の§6ゲームモード§r:チーム戦
+actionbar.team.random.two=ランダム:2チーム
+actionbar.team.random.four=ランダム:4チーム
+actionbar.team.select.two=選択:2チーム
+actionbar.team.select.four=選択:4チーム
+
+## 致命的なバグのメッセージ
+informant.bag.message=只今致命的な問題により使用できません。ご迷惑をおかけいたします
+
+## ゲームモード固定
+gamemodechange.warning=none
+
 ## ファンクションファイル
 ## function.ファイル名.内容
+
+## ゲームスタート
+gamestart.help.message=<密告中 | help> §e!stop§rでゲームのストップ投票を開始できます
+gamestart.help.spectator.message=<密告中 | help> help:!tpで生存者一覧を見ることができ選択でtp出来ます！
+
+## セッティング
+setting.nowgame.warning.message=<密告中 | §gwarning§r> ゲーム中は設定を変更できません
+
+## チェンジゲームモード
+gamemode.change.team.message=<密告中 | setting>ゲームルールをチーム戦にしました
+gamemode.change.solo.message=<密告中 | setting>ゲームルールを個人戦にしました
 
 ## タイトル(script)
 title.timeover.oneminute=§eゲーム終了まであと1分§r
@@ -87,10 +112,15 @@ command.stop.command.coolingdown.message=<密告中 | command> ストップリ�
 command.stop.command.nowstoping.message=<密告中 | §gwarning§r> 現在ストップ中です
 command.stop.command.unspectator.message=<密告中 | §gwarning§r> 観戦者は使用できないコマンドです
 
+## Mapコマンドメッセージ
+command.map.command.owneronly.message=<密告中 | §gwarning§r> オーナーのみ利用可能です
+command.map.command.gameing.message=<密告中 | §gwarning§r> ゲーム中は利用できません
+
 ## ui関係
 
 ui.back.menu=メインメニューに戻る
 ui.whole=全体
+ui.team=チーム
 ui.canceled.message=<密告中 | info> スマホの使用をキャンセルしました
 
 ## Menuフォーム
@@ -178,6 +208,26 @@ check.entry.not.verified=<密告中 | info> §4入力が確認されませんで
 check.number.only=<密告中 | §gwarning§r> §4数字以外は無効です
 check.number.two.digits=<密告中 | §gwarning§r> §4番号は二桁です
 
+## Selectform
+ui.select.title=設定フォーム
+ui.select.body=設定したい項目を選択してください
+ui.select.button1=Map選択
+ui.select.button2=ゲームモード選択
+
+## map選択フォーム
+ui.map.title=選択フォーム
+ui.map.body=設定したいMapを選択してください
+ui.map.button1=日本庭園
+ui.map.button2=comingsoon....
+ui.map.button3=戻る
+ui.map.set.japanesegarden=<密告中 | setting> マップを日本庭園に設定しました
+
+## SettingTeamフォーム
+ui.team.title=チーム戦セッテイング
+ui.team.toggle=チーム戦を有効化
+ui.team.dropdown1=チーム振り分け形式
+ui.team.dropdown2=チーム数
+ui.gamerule.seve=<密告中 | setting> ゲームルールが保存されました
 
 
 ## ミッション関係
@@ -203,7 +253,7 @@ mission.nosneak.countdown.messege=<密告中 | mission> ゲームオーバーま
 ## ビーコンミッション
 mission.fourbeacons.start.message=<密告中 | mission> ミッション発動！残り%1分までにマップ内に存在する4つのビーコンのうちどれか2つのダイヤモンドブロックの上に乗れ！乗れなければゲームオーバーとなる
 mission.fourbeacons.authenticationcomplete=<密告中 | mission> 認証完了！ %1/2
-mission.fourbeacons.all.authenticationcomplete=<密告中 | mission> 認証オールクリア！
+mission.fourbeacons.all.authenticationcomplete=<密告中 | mission> §e認証オールクリア！§r
 
 ## 悪天候ミッション
 mission.fiveminutesfog.pre.message=<密告中 | mission> 天候が悪化している...
@@ -213,7 +263,42 @@ mission.fiveminutesfog.end.message=<密告中 | mission> 天候が戻った...
 ## ボタンミッション
 mission.fivebuttons.start.message=<密告中 | mission> ミッション発動！残り%1分までにマップ内に存在する5つの桜のボタンのうちどれか1つを押せ！押せなければゲームオーバーとなる！ボタンを押せるのは先着5人！
 mission.fivebuttons.alreadypressed.message=<密告中 | §gwarning§r> すでに押しています
+mission.fivebuttons.alreadypressed.message.team=<密告中 | §gwarning§r> あなたのチームはすでに押しています
 
 ## スネールミッション
 mission.chasedbysnail.start.message=<密告中 | mission> ミッション発動！%1分までエリアに15匹のカタツムリが出現！プレイヤーに襲いかかる！阻止するにはカタツムリのご飯をあげなければならない！なおご飯は1匹に付き1人しかあげられない
 mission.chasedbysnail.ate.message=<密告中 | mission> %1はカタツムリに食べられてしまった！
+
+## worldload
+worldload.run=これよりワールドリセットを開始します
+
+## メール関係
+mail.reject.set=[]
+
+mail.gamestart=[ワールド]ゲームスタート
+mail.chat=[%1 => %2] %3§r
+mail.chat.all=[%1 => 全体] %2§r
+mail.chat.team=[%1 => チーム] %2§r
+mail.gameover.informant.true=[ワールド]%1は%2の§4密告§fにより§4追放§fされました|残り:%3人
+mail.gameover.informant.false=[ワールド]%1は§4虚偽通報§fにより§4追放§fされました|残り:%2人
+mail.gameover.mission=[ワールド]%1はミッション失敗により§4追放§fされました！|残り:%2人
+
+
+## ミッション終了
+mail.mission.end=[ワールド]ミッション終了
+
+
+## メール　ソロミッション
+mail.mission.chasedbysnail.start=[ミッション]残り%1分までエリアに15匹のカタツムリが出現！プレイヤーに襲いかかる！阻止するにはカタツムリのご飯をあげなければならない！なおご飯は1匹に付き1人しかあげられない
+mail.mission.fivebuttons.start=[ミッション]残り%1分までにマップ内に存在する5つの桜のボタンのうちどれか1つを押せ！押せなければゲームオーバーとなる！ボタンを押せるのは先着5人！
+mail.mission.fiveminutesfog.start=[気象情報]悪天候により残り%1分まで霧が発生
+mail.mission.fourbeacons.start=[ミッション]残り%1分までにマップ内に存在する4つのビーコンのうちどれか2つのダイヤモンドブロックの上に乗れ！乗れなければゲームオーバーとなる
+mail.mission.nosneak.start=[ミッション]残り%1分になるまでスニークできない！！スニークした場合自分からアラームが鳴る！更に連続で5秒スニークした場合ゲームオーバとなる！
+mail.mission.npcrequests.start=[ミッション]残り%1分までにマップ内に3人存在するNPCからクエストを受けろ！
+## メール　チームミッション
+mail.mission.chasedbysnail.team.start=[ミッション]残り%1分までエリアに15匹のカタツムリが出現！プレイヤーに襲いかかる！阻止するにはカタツムリのご飯をあげなければならない！なおご飯は1匹に付き1チームしかあげられない
+mail.mission.fivebuttons.team.start=[ミッション]残り%1分までにマップ内に存在する4つの桜のボタンのうちチームでどれか1つを押せ！押せなければチームがゲームオーバーとなる！
+mail.mission.fiveminutesfog.team.start=[気象情報]悪天候により残り%1分まで霧が発
+mail.mission.fourbeacons.team.start=[ミッション]残り%1分までにマップ内に存在する4つのビーコンのうちどれか2つのダイヤモンドブロックの上に乗れ！乗れなければゲームオーバーとなる
+mail.mission.nosneak.team.start=[ミッション]残り%1分になるまでスニークできない！！スニークした場合自分からアラームが鳴る！更に連続で5秒スニークした場合ゲームオーバとなる！
+mail.mission.npcrequests.team.start=[ミッション]残り%1分までにマップ内に3人存在するNPCからクエストを受けろ！
