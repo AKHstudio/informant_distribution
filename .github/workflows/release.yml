@@ -4,31 +4,64 @@ on:
     push:
         branches:
             - main
-    pull_request:
-        types: [closed]
 
 jobs:
     release:
-        if: github.event.pull_request.merged == true
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Extract branch name
-              id: extract_branch
+            - name: Read release notes and version from RELEASE.md
+              id: read_release_notes_and_version
               run: |
-                  branch_name=$(echo "${{ github.event.pull_request.head.ref }}")
-                  echo "branch_name=$branch_name" >> $GITHUB_ENV
+                  release_notes=$(tail -n +2 RELEASE.md) # 2行目以降を取得
+                  version=$(head -n 1 RELEASE.md) # 1行目を取得
+                  echo "release_note=$release_notes" >> $GITHUB_ENV
+                  echo "version=$version" >> $GITHUB_ENV
+
+            - name: Find mcworld and mcaddon files
+              id: find_files
+              run: |
+                  mcworld_files=$(find . -name "informant_*.*.*.mcworld" -print0 | tr '\0' '\n' | paste -sd ',' -)
+                  mcaddon_files=$(find . -name "informant_addon_*-*-*.mcaddon" -print0 | tr '\0' '\n' | paste -sd ',' -)
+                  echo "mcworld_files=$mcworld_files" >> $GITHUB_ENV
+                  echo "mcaddon_files=$mcaddon_files" >> $GITHUB_ENV
 
             - name: Create Release
+              id: create_release
               uses: actions/create-release@v1
               with:
-                  tag_name: ${{ env.branch_name }}
-                  release_name: ${{ env.branch_name }}
-                  body_path: RELEASE
+                  tag_name: ${{ env.version }}
+                  release_name: ${{ env.version }}
+                  body: ${{ env.release_note }}
                   draft: false
                   prerelease: false
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  branch_name: ${{ env.branch_name }}
+                  release_note: ${{ env.release_note }}
+                  version: ${{ env.version }}
+
+            - name: Upload mcworld files
+              if: env.mcworld_files != '' && steps.create_release.outputs.upload_url  != ''
+              uses: actions/upload-release-asset@v1
+              with:
+                  upload_url: ${{ steps.create_release.outputs.upload_url }}
+                  asset_path: ${{ env.mcworld_files }}
+                  asset_name: $(basename ${{ env.mcworld_files }})
+                  asset_content_type: application/zip
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  mcworld_files: ${{ env.mcworld_files }}
+
+            - name: Upload mcaddon files
+              if: env.mcaddon_files != '' && steps.create_release.outputs.upload_url  != ''
+              uses: actions/upload-release-asset@v1
+              with:
+                  upload_url: ${{ steps.create_release.outputs.upload_url }}
+                  asset_path: ${{ env.mcaddon_files }}
+                  asset_name: $(basename ${{ env.mcaddon_files }})
+                  asset_content_type: application/zip
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  mcaddon_files: ${{ env.mcaddon_files }}
