@@ -25,8 +25,8 @@ jobs:
             - name: Find mcworld and mcaddon files
               id: find_files
               run: |
-                  mcworld_files=$(find . -name "informant_*.*.*.mcworld" -print0 | sed 's/^.\//')
-                  mcaddon_files=$(find . -name "informant_addon_*-*-*.mcaddon" -print0 | sed 's/^.\//')
+                  mcworld_files=$(find . -name "informant_*.*.*.mcworld" | sed 's|^\./||)
+                  mcaddon_files=$(find . -name "informant_addon_*-*-*.mcaddon" | sed 's|^\./||)
                   echo "mcworld_files=$mcworld_files" >> "$GITHUB_OUTPUT"
                   echo "mcaddon_files=$mcaddon_files" >> "$GITHUB_OUTPUT"
 
