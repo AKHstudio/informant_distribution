@@ -26,8 +26,8 @@ jobs:
             - name: Find mcworld and mcaddon files
               id: find_files
               run: |
-                  mcworld_files=$(find . -name "informant_*.*.*.mcworld")
-                  mcaddon_files=$(find . -name "informant_addon_*-*-*.mcaddon")
+                  mcworld_files=$(find . -name "informant_*.*.*.mcworld" -print0 | tr '\0' '\n' | sed 's/^.\//' | paste -sd ',' -)
+                  mcaddon_files=$(find . -name "informant_addon_*-*-*.mcaddon" -print0 | tr '\0' '\n' | sed 's/^.\//' | paste -sd ',' -)
                   echo "mcworld_files=$mcworld_files" >> "$GITHUB_OUTPUT"
                   echo "mcaddon_files=$mcaddon_files" >> "$GITHUB_OUTPUT"
 
@@ -67,7 +67,7 @@ jobs:
               uses: actions/upload-release-asset@v1
               with:
                   upload_url: ${{ env.upload_url}}
-                  asset_path: ${{ env.mcworld_files }}
+                  asset_path: ./${{ env.mcworld_files }}
                   asset_name: ${{ env.mcworld_files }}
                   asset_content_type: application/zip
               env:
