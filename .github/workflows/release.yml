@@ -26,8 +26,8 @@ jobs:
             - name: Find mcworld and mcaddon files
               id: find_files
               run: |
-                  mcworld_files=$(find . -name "informant_*.*.*.mcworld" -print0 | sed 's/^.\//' | paste -sd ',' -)
-                  mcaddon_files=$(find . -name "informant_addon_*-*-*.mcaddon" -print0 | sed 's/^.\//' | paste -sd ',' -)
+                  mcworld_files=$(find . -name "informant_*.*.*.mcworld" -print0 | sed 's/^.\//')
+                  mcaddon_files=$(find . -name "informant_addon_*-*-*.mcaddon" -print0 | sed 's/^.\//')
                   echo "mcworld_files=$mcworld_files" >> "$GITHUB_OUTPUT"
                   echo "mcaddon_files=$mcaddon_files" >> "$GITHUB_OUTPUT"
 
@@ -45,7 +45,7 @@ jobs:
               uses: actions/create-release@v1
               with:
                   tag_name: ${{ env.version}}
-                  release_name: ${{ env.version}}
+                  release_name: 密告中 ver${{ env.version }}
                   body_path: ./RELEASE.md
                   draft: false
                   prerelease: false
