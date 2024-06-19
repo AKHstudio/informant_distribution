@@ -8,56 +8,81 @@ name: Create Release
 on: workflow_dispatch
 
 jobs:
-    release:
+    get_use_outputs:
         runs-on: ubuntu-latest
+        outputs:
+            release_notes: ${{ steps.read_release_notes.outputs.release_notes }}
+            version: ${{ steps.read_version.outputs.version }}
+            mcworld_files: ${{ steps.find_files.outputs.mcworld_files }}
+            mcaddon_files: ${{ steps.find_files.outputs.mcaddon_files }}
         steps:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Read release notes and version from RELEASE
-              id: read_release_notes_and_version
+            - name: Read release notes from RELEASE
+              id: read_release_notes
               run: |
                   release_notes=$(tail -n +2 RELEASE)
+                  echo "release_notes=$release_notes" >> "$GITHUB_OUTPUT"
+
+            - name:
+              id: read_version
+              run: |
                   version=$(head -n 1 RELEASE)
-                  echo "::set-output name=release_notes::$release_notes"
-                  echo "::set-output name=version::$version"
+                  echo "version=$version" >> "$GITHUB_OUTPUT"
 
             - name: Find mcworld and mcaddon files
               id: find_files
               run: |
                   mcworld_files=$(find . -name "informant_*.*.*.mcworld" -print0 | tr '\0' '\n' | paste -sd ',' -)
                   mcaddon_files=$(find . -name "informant_addon_*-*-*.mcaddon" -print0 | tr '\0' '\n' | paste -sd ',' -)
-                  echo "::set-output name=mcworld_files::$mcworld_files"
-                  echo "::set-output name=mcaddon_files::$mcaddon_files"
+                  echo "mcworld_files=$mcworld_files" >> "$GITHUB_OUTPUT"
+                  echo "mcaddon_files=$mcaddon_files" >> "$GITHUB_OUTPUT"
 
+    release:
+        needs: get_use_outputs
+        runs-on: ubuntu-latest
+        outputs:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+        steps:
             - name: Create Release
               id: create_release
               uses: actions/create-release@v1
               with:
-                  tag_name: ${{ steps.read_release_notes_and_version.outputs.version }}
-                  release_name: ${{ steps.read_release_notes_and_version.outputs.version }}
-                  body: ${{ steps.read_release_notes_and_version.outputs.release_notes }}
+                  tag_name: $version
+                  release_name: $version
+                  body: $release_notes
                   draft: false
                   prerelease: false
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  release_notes: ${{ needs.get_use_outputs.outputs.release_notes }}
+                  version: ${{ needs.get_use_outputs.outputs.version }}
 
+    assets:
+        needs: [release, get_use_outputs]
+        runs-on: ubuntu-latest
+        steps:
             - name: Upload mcworld files
               uses: actions/upload-release-asset@v1
               with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ${{ steps.find_files.outputs.mcworld_files }}
-                  asset_name: $(basename ${{ steps.find_files.outputs.mcworld_files }})
+                  upload_url: $upload_url
+                  asset_path: $mcworld_files
+                  asset_name: $(basename $mcworld_files)
                   asset_content_type: application/zip
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  mcworld_files: ${{ needs.get_use_outputs.outputs.mcworld_files }}
+                  upload_url: ${{ needs.release.create_release.outputs.upload_url }}
 
             - name: Upload mcaddon files
               uses: actions/upload-release-asset@v1
               with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ${{ steps.find_files.outputs.mcaddon_files }}
-                  asset_name: $(basename ${{ steps.find_files.outputs.mcaddon_files }})
+                  upload_url: $upload_url
+                  asset_path: $mcaddon_files
+                  asset_name: $(basename $mcaddon_files)
                   asset_content_type: application/zip
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  mcaddon_files: ${{ needs.get_use_outputs.outputs.mcaddon_files }}
+                  upload_url: ${{ needs.release.create_release.outputs.upload_url }}
