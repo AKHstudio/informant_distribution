@@ -57,12 +57,15 @@ jobs:
         needs: [release, get_use_outputs]
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
             - name: Upload mcworld files
               uses: actions/upload-release-asset@v1
               with:
-                  upload_url: $upload_url
-                  asset_path: $mcworld_files
-                  asset_name: $(basename $mcworld_files)
+                  upload_url: ${{ env.upload_url}}
+                  asset_path: ${{ env.mcworld_files }}
+                  asset_name: $(basename ${{ env.mcworld_files }})
                   asset_content_type: application/zip
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -72,9 +75,9 @@ jobs:
             - name: Upload mcaddon files
               uses: actions/upload-release-asset@v1
               with:
-                  upload_url: $upload_url
-                  asset_path: $mcaddon_files
-                  asset_name: $(basename $mcaddon_files)
+                  upload_url: ${{ env.upload_url}}
+                  asset_path: ${{ env.mcaddon_files }}
+                  asset_name: $(basename ${{ env.mcaddon_files }})
                   asset_content_type: application/zip
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
