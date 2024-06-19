@@ -1,0 +1,31 @@
+name: Create Release
+
+on:
+    pull_request:
+        types: [closed]
+
+jobs:
+    release:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Extract branch name
+              id: extract_branch
+              run: |
+                  branch_name=$(echo "${{ github.event.pull_request.head.ref }}")
+                  echo "branch_name=$branch_name" >> $GITHUB_ENV
+
+            - name: Create Release
+              uses: actions/create-release@v1
+              with:
+                  tag_name: ${{ env.branch_name }}
+                  release_name: ${{ env.branch_name }}
+                  body_path: RELEASE
+                  draft: false
+                  prerelease: false
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  branch_name: ${{ env.branch_name }}
