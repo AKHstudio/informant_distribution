@@ -1,11 +1,9 @@
 name: Create Release
 
-# on:
-#     push:
-#         branches:
-#             - main
-
-on: workflow_dispatch
+on:
+    push:
+        branches:
+            - main
 
 jobs:
     get_use_outputs:
@@ -32,8 +30,14 @@ jobs:
                   echo "mcworld_files=$mcworld_files" >> "$GITHUB_OUTPUT"
                   echo "mcaddon_files=$mcaddon_files" >> "$GITHUB_OUTPUT"
 
+    open_release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Open RELEASE.md
+              run: echo "release_note=(cat RELEASE.md)" >> "$GITHUB_OUTPUT"
+
     release:
-        needs: get_use_outputs
+        needs: [get_use_outputs, open_release]
         runs-on: ubuntu-latest
         outputs:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
@@ -42,8 +46,8 @@ jobs:
               id: create_release
               uses: actions/create-release@v1
               with:
-                  tag_name: $version
-                  release_name: $version
+                  tag_name: ${{ env.version}}
+                  release_name: ${{ env.version}}
                   body_path: ./RELEASE.md
                   draft: false
                   prerelease: false
