@@ -11,7 +11,6 @@ jobs:
     get_use_outputs:
         runs-on: ubuntu-latest
         outputs:
-            release_notes: ${{ steps.read_release_notes.outputs.release_notes }}
             version: ${{ steps.read_version.outputs.version }}
             mcworld_files: ${{ steps.find_files.outputs.mcworld_files }}
             mcaddon_files: ${{ steps.find_files.outputs.mcaddon_files }}
@@ -19,16 +18,10 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Read release notes from RELEASE
-              id: read_release_notes
-              run: |
-                  release_notes=$(tail -n +2 RELEASE)
-                  echo "release_notes=$release_notes" >> "$GITHUB_OUTPUT"
-
             - name:
               id: read_version
               run: |
-                  version=$(head -n 1 RELEASE)
+                  version=$(cat VERSION.md)
                   echo "version=$version" >> "$GITHUB_OUTPUT"
 
             - name: Find mcworld and mcaddon files
@@ -51,12 +44,11 @@ jobs:
               with:
                   tag_name: $version
                   release_name: $version
-                  body: $release_notes
+                  body_path: ./RELEASE.md
                   draft: false
                   prerelease: false
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  release_notes: ${{ needs.get_use_outputs.outputs.release_notes }}
                   version: ${{ needs.get_use_outputs.outputs.version }}
 
     assets:
