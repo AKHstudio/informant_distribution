@@ -30,18 +30,15 @@ jobs:
                   echo "mcworld_files=$mcworld_files" >> "$GITHUB_OUTPUT"
                   echo "mcaddon_files=$mcaddon_files" >> "$GITHUB_OUTPUT"
 
-    open_release:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Open RELEASE.md
-              run: echo "release_note=(cat RELEASE.md)" >> "$GITHUB_OUTPUT"
-
     release:
-        needs: [get_use_outputs, open_release]
+        needs: get_use_outputs
         runs-on: ubuntu-latest
         outputs:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
         steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
             - name: Create Release
               id: create_release
               uses: actions/create-release@v1
