@@ -1,9 +1,11 @@
 name: Create Release
 
-on:
-    push:
-        branches:
-            - main
+# on:
+#     push:
+#         branches:
+#             - main
+
+on: workflow_dispatch
 
 jobs:
     release:
@@ -15,8 +17,8 @@ jobs:
             - name: Read release notes and version from RELEASE
               id: read_release_notes_and_version
               run: |
-                  release_notes=$(tail -n +2 RELEASE) # 2行目以降を取得
-                  version=$(head -n 1 RELEASE) # 1行目を取得
+                  release_notes=$(tail -n +2 RELEASE)
+                  version=$(head -n 1 RELEASE)
                   echo "release_note=$release_notes" >> $GITHUB_ENV
                   echo "version=$version" >> $GITHUB_ENV
 
