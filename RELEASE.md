@@ -3,4 +3,4 @@
 
 システム
 
--   minecraft 1.21.30 に対応
+-   minecraft 1.21.70 に対応
